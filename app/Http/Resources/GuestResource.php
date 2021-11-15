@@ -10,7 +10,7 @@ class GuestResource extends JsonResource
         return  [
             'id' => $this->id,
             'name' => $this->name,
-            'point' => $this->guestPoint->id,
+            'point' => $this->point,
             'address' => $this->guestInfo->address,
             'age' => $this->guestInfo->age,
         ];

@@ -2137,6 +2137,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "LeaderBoard",
@@ -2151,13 +2162,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     init: function init() {
+      var _this = this;
+
       (0,_api__WEBPACK_IMPORTED_MODULE_0__.gerAllUsers)().then(function (data) {
         console.log(data);
+        _this.users = data.data;
       })["catch"](function (error) {});
     },
     buttonClick: function buttonClick() {
       console.log('yo');
-    }
+    },
+    getTooltip: function getTooltip(user) {}
   }
 });
 
@@ -37792,12 +37807,11 @@ var render = function () {
   return _c("div", { staticClass: "container-fluid text-center" }, [
     _c(
       "div",
-      { staticClass: "card text-center", staticStyle: { width: "18rem" } },
+      {
+        staticClass: "table-responsive col-12",
+        staticStyle: { width: "18rem" },
+      },
       [
-        _c("div", { staticClass: "card-header" }, [
-          _vm._v("\n            Featured\n        "),
-        ]),
-        _vm._v(" "),
         _vm.loading
           ? _c("loading-view", {
               staticClass: "p-5",
@@ -37805,73 +37819,127 @@ var render = function () {
             })
           : _vm._e(),
         _vm._v(" "),
-        _c("ul", { staticClass: "list-group list-group-flush" }, [
-          _vm._m(0),
-          _vm._v(" "),
-          _c("div", { staticClass: "list-group-item" }, [
-            _c("button", [_vm._v("x")]),
-            _vm._v(" "),
-            _c("span", [_vm._v("Danny")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                on: {
-                  click: function ($event) {
-                    $event.preventDefault()
-                    return _vm.buttonClick.apply(null, arguments)
-                  },
-                },
-              },
-              [_vm._v("+")]
-            ),
-            _vm._v(" "),
-            _c("button", [_vm._v("-")]),
-            _vm._v(" "),
-            _c("span", [_vm._v("25 points")]),
-          ]),
-          _vm._v(" "),
-          _vm._m(1),
+        _c("table", { staticClass: "table table-bordered table-hover" }, [
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.users, function (user) {
+                return _c("tr", [
+                  _c("td", [
+                    _c("span", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.addPoint(user.id)
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                           X\n                        "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(user.name) +
+                          "\n                    "
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.addPoint(user.id)
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                           +\n                        "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-link",
+                          attrs: { href: "#" },
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.addPoint(user.id)
+                            },
+                          },
+                        },
+                        [
+                          _vm._v(
+                            "\n                           -\n                        "
+                          ),
+                        ]
+                      ),
+                    ]),
+                    _vm._v(" "),
+                    _c("span", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(user.point) +
+                          "\n                    "
+                      ),
+                    ]),
+                  ]),
+                ])
+              }),
+              _vm._v(" "),
+              _c("tr", [
+                _c("span", [
+                  _c(
+                    "a",
+                    {
+                      staticClass: "text-link",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function ($event) {
+                          $event.preventDefault()
+                          return _vm.addPoint(_vm.user.id)
+                        },
+                      },
+                    },
+                    [
+                      _vm._v(
+                        "\n                           + ADD USER\n                        "
+                      ),
+                    ]
+                  ),
+                ]),
+              ]),
+            ],
+            2
+          ),
         ]),
       ],
       1
     ),
   ])
 }
-var staticRenderFns = [
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "list-group-item" }, [
-      _c("button", [_vm._v("x")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("Emma")]),
-      _vm._v(" "),
-      _c("button", [_vm._v("+")]),
-      _vm._v(" "),
-      _c("button", [_vm._v("-")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("25 points")]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "list-group-item" }, [
-      _c("button", [_vm._v("x")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("John")]),
-      _vm._v(" "),
-      _c("button", [_vm._v("+")]),
-      _vm._v(" "),
-      _c("button", [_vm._v("-")]),
-      _vm._v(" "),
-      _c("span", [_vm._v("25 points")]),
-    ])
-  },
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

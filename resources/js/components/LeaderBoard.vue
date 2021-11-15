@@ -1,35 +1,46 @@
 <template>
     <div class="container-fluid text-center">
-        <div class="card text-center" style="width: 18rem;">
-            <div class="card-header">
-                Featured
-            </div>
+        <div class="table-responsive col-12" style="width: 18rem;">
 
             <loading-view v-if="loading" :loading="loading" class="p-5"/>
 
-            <ul class="list-group list-group-flush">
-                <div class="list-group-item">
-                    <button>x</button>
-                    <span>Emma</span>
-                    <button>+</button>
-                    <button>-</button>
-                    <span>25 points</span>
-                </div>
-                <div class="list-group-item">
-                    <button>x</button>
-                    <span>Danny</span>
-                    <button  @click.prevent="buttonClick">+</button>
-                    <button>-</button>
-                    <span>25 points</span>
-                </div>
-                <div class="list-group-item">
-                    <button>x</button>
-                    <span>John</span>
-                    <button>+</button>
-                    <button>-</button>
-                    <span>25 points</span>
-                </div>
-            </ul>
+            <table class="table table-bordered table-hover">
+                <tbody>
+                <tr v-for="user in users"
+                >
+                    <td>
+                        <span>
+                            <a @click.prevent="addPoint(user.id)" href="#" class="text-link">
+                               X
+                            </a>
+                        </span>
+                        <span>
+                            {{user.name}}
+                        </span>
+                        <span>
+                            <a @click.prevent="addPoint(user.id)" href="#" class="text-link">
+                               +
+                            </a>
+                        </span>
+                        <span>
+                            <a @click.prevent="addPoint(user.id)" href="#" class="text-link">
+                               -
+                            </a>
+                        </span>
+                        <span>
+                            {{user.point}}
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                  <span>
+                            <a @click.prevent="addPoint(user.id)" href="#" class="text-link">
+                               + ADD USER
+                            </a>
+                        </span>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </template>
@@ -55,12 +66,16 @@ export default {
         init() {
             gerAllUsers().then(data => {
                 console.log(data);
+                this.users = data.data;
             }).catch(error => {
 
             });
         },
         buttonClick() {
             console.log('yo');
+        },
+        getTooltip(user) {
+
         }
     }
 }
