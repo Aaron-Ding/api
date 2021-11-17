@@ -17,15 +17,22 @@ class LeaderBoardService
         $this->guestRepository = $guestRepository;
     }
 
-    public function updateGuestPoint(int $guestId, int $point)
+    public function updateGuestPoint($guestId, int $point)
     {
+        $guest = $this->guestRepository->mustFindById($guestId);
+        if ($guest->point + $point < 0 ) {
+            $point = 0;
+        } else {
+            $point += $guest->point;
+        }
         return $this->guestRepository->update($guestId, ['point' => $point]);
     }
 
-    public function createNewGuest(int $guestId, array $attribute)
+    public function createNewGuest(array $attribute)
     {
-        $guest = $this->guestRepository->create($guestId, ['name' => $attribute['name']]);
-        GuestInfo::create(['guest_id' => $guest->id, 'age' => $attribute['age'], 'address' => $attribute['address']]);
+        $guest = $this->guestRepository->create(['name' => $attribute['name']]);
+        unset($attribute['name']);
+        $this->guestRepository->createRelationTable($guest->id, $attribute);
         return $guest;
     }
 

@@ -44,6 +44,7 @@ return [
         'api' => [
             'driver' => 'passport',
             'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -95,7 +96,7 @@ return [
         'users' => [
             'provider' => 'users',
             'table' => 'password_resets',
-            'expire' => 60,
+            'expire' => 3600,
             'throttle' => 60,
         ],
     ],

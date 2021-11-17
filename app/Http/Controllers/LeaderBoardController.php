@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Request\GuestCreateRequest;
+use App\Http\Request\GuestPointUpdateRequest;
 use App\Http\Resources\GuestResource;
-use App\Models\Guest;
 use App\Repository\GuestRepositoryInterface;
 use App\Service\LeaderBoardService;
-use Illuminate\Http\Request;
 
 class LeaderBoardController extends Controller
 {
@@ -23,10 +23,10 @@ class LeaderBoardController extends Controller
         return GuestResource::collection($this->guestRepository->getAllUsers());
     }
 
-    public function update(Request $request)
+    public function update($id, GuestPointUpdateRequest $request)
     {
         try {
-            $this->leaderBoardService->updateGuestPoint($request->input('guestId'), $request->input('point'));
+            $this->leaderBoardService->updateGuestPoint($id, $request->input('point'));
 
             return GuestResource::collection($this->guestRepository->getAllUsers());
         } catch (\Exception $e) {
@@ -34,21 +34,20 @@ class LeaderBoardController extends Controller
         }
     }
 
-    public function create(Request $request)
+    public function create(GuestCreateRequest $request)
     {
         try {
-            $this->leaderBoardService->createNewGuest($request->input('guestId'), $request->input('info'));
-
+            $this->leaderBoardService->createNewGuest($request->all());
             return GuestResource::collection($this->guestRepository->getAllUsers());
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);
         }
     }
 
-    public function delete(Request $request)
+    public function delete($id)
     {
         try {
-            $this->leaderBoardService->deleteGuest($request->input('guestId'));
+            $this->leaderBoardService->deleteGuest($id);
             return GuestResource::collection($this->guestRepository->getAllUsers());
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage()], 500);

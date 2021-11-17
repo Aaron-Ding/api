@@ -9,6 +9,7 @@
     <title>Canada Drive API</title>
 
     <link href="{{ mix('css/app.css') }}" type="text/css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.1/font/bootstrap-icons.css">
 </head>
 
 <body>
