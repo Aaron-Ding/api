@@ -69,7 +69,6 @@ import {
     createNewUser
 } from './api';
 import AddUserModal from './AddUserModal';
-import VTooltip from 'v-tooltip'
 import UserInfoModal from "./UserInfo";
 
 export default {
@@ -88,10 +87,6 @@ export default {
     created() {
         this.init();
     },
-    mounted: function() {
-        $('[data-toggle="tooltip"]').tooltip();
-    },
-
     methods: {
         init() {
             getAllUsers().then(data => {

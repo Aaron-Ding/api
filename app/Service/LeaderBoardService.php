@@ -2,8 +2,9 @@
 
 namespace App\Service;
 
-use App\Models\GuestInfo;
+use App\Models\Guest;
 use App\Repository\GuestRepositoryInterface;
+use Illuminate\Support\Collection;
 
 class LeaderBoardService
 {
@@ -17,7 +18,31 @@ class LeaderBoardService
         $this->guestRepository = $guestRepository;
     }
 
-    public function updateGuestPoint($guestId, int $point)
+    /**
+     * @return null|Collection
+     */
+    public function getAllGuests() :?Collection
+    {
+        return $this->guestRepository->getAllUsers();
+    }
+
+    /**
+     * @param $id
+     *
+     * @return Guest
+     */
+    public function getGuest($id) :Guest
+    {
+        return $this->guestRepository->mustFindById($id);
+    }
+
+    /**
+     * @param     $guestId
+     * @param int $point
+     *
+     * @return bool
+     */
+    public function updateGuestPoint($guestId, int $point) :bool
     {
         $guest = $this->guestRepository->mustFindById($guestId);
         if ($guest->point + $point < 0 ) {
@@ -28,7 +53,12 @@ class LeaderBoardService
         return $this->guestRepository->update($guestId, ['point' => $point]);
     }
 
-    public function createNewGuest(array $attribute)
+    /**
+     * @param array $attribute
+     *
+     * @return mixed
+     */
+    public function createNewGuest(array $attribute) :Guest
     {
         $guest = $this->guestRepository->create(['name' => $attribute['name']]);
         unset($attribute['name']);
@@ -36,10 +66,15 @@ class LeaderBoardService
         return $guest;
     }
 
-    public function deleteGuest(int $guestId)
+    /**
+     * @param int $guestId
+     *
+     * @return bool
+     */
+    public function deleteGuest(int $guestId) :bool
     {
         $guest = $this->guestRepository->mustFindById($guestId);
-        $guestInfo = $guest->guestInfo->delete();
+        $guest->guestInfo->delete();
         $guest->delete();
         return true;
     }

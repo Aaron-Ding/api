@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/leaderboard', function () {
+Route::get('/', function () {
     return view('layout.app');
 });
 
