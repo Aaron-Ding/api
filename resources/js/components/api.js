@@ -6,21 +6,21 @@ instance.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 instance.defaults.headers['Content-Type'] = "application/json";
 instance.defaults.headers['Authorization'] = "Bearer " + token;
 export function getAllUsers(){
-    return instance.get('api/leaderboard/users').then(res => res.data);
+    return instance.get('api/leaderboard/guests').then(res => res.data);
 }
 
 export function deleteUser(id){
-    return instance.delete('api/leaderboard/user/'+id).then(res => res.data);
+    return instance.delete('api/leaderboard/guest/'+id).then(res => res.data);
 }
 
 export function updateUserPoint(id, point){
-    return instance.post('api/leaderboard/user/'+id, {
+    return instance.post('api/leaderboard/guest/'+id, {
         point: point
     }).then(res => res.data);
 }
 
 export function createNewUser(info){
-    return instance.post('api/leaderboard/user', {
+    return instance.post('api/leaderboard/guest', {
         name: info.name,
         age: info.age,
         address: info.address,
