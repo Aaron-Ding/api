@@ -34,11 +34,17 @@ class LeaderBoardController extends Controller
     /**
      * @param $id
      *
-     * @return GuestResource
+     * @return JsonResponse|AnonymousResourceCollection
      */
     public function get($id)
     {
-        return new GuestResource($this->leaderBoardService->getGuest($id));
+        try {
+            return new GuestResource($this->leaderBoardService->getGuest($id));
+        } catch (ModelNotFoundException $e) {
+            return response()->json(['message' => $e->getMessage()], 422);
+        } catch (Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
     }
     /**
      * @param $id
