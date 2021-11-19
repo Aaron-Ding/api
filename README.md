@@ -5,9 +5,9 @@ API sample
 git clone https://github.com/Aaron-Ding/api.git
 git checkout origin/master
 
- * Create database everest in mysql (user root and no password)
-   > CREATE DATABASE everest;
- * cp .env.example to .env in projet everest and everest-public
+ * Create database api in mysql (user root and no password)
+   > CREATE DATABASE api_canada_drive;
+ * cp .env.example to .env in project
    > cp .env.example .env
  * Run composer to install laravel packages
    > composer install
@@ -22,8 +22,6 @@ git checkout origin/master
 
  * Run Unit Test (under root directory) 
  > ./vendor/bin/phpunit
-
-
 
 
 
