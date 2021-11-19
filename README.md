@@ -35,7 +35,7 @@ The REST API Documentation.
 
 ### Request
 
-`GET /api/leaderboard/users`
+`GET /api/leaderboard/guests`
 
 ### Response
 
@@ -87,7 +87,7 @@ The REST API Documentation.
            "age": 20
            }
 
-`POST api/leaderboard/user`
+`POST api/leaderboard/guest`
 
 ### Response
 
@@ -111,7 +111,7 @@ The REST API Documentation.
 
 ### Request
 
-`GET api/leaderboard/user/id`
+`GET api/leaderboard/guest/id`
 
 ### Response
 
@@ -135,7 +135,7 @@ The REST API Documentation.
 ### Request
 {'point': 10}
 
-`POST api/leaderboard/user/id`
+`POST api/leaderboard/guest/id`
 
 ### Response
 
@@ -158,7 +158,7 @@ The REST API Documentation.
 
 ### Request
 
-`DELETE api/leaderboard/user/id`
+`DELETE api/leaderboard/guest/id`
 
 ### Response
 
