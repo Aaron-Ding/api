@@ -26,10 +26,6 @@ class LeaderBoardServiceTest extends TestCase
         $this->leaderboardService = app()->make(LeaderBoardService::class);
     }
 
-    public function testGetGuests()
-    {
-        $this->assertEquals(1, 1);
-    }
 
     public function testUpdatePoint()
     {

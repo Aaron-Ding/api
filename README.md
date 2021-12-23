@@ -31,6 +31,50 @@ API DOCUMETATION
 
 The REST API Documentation.
 
+## Register API Auth User 
+`GET /api/register`
+
+### Request
+{
+    'name' : 'ApiUser1',
+    'email' : 'example@email.com',
+    'password': 'password'
+}
+
+### Response
+
+    HTTP/1.1 201 Created
+    Status: 201 Created
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 35
+
+    {
+        token: 'oauth Token'
+    }
+
+## Login with existing API Auth User 
+`GET /api/login`
+
+### Request
+{
+    'email' : 'example@email.com',
+    'password': 'password'
+}
+
+### Response
+
+    HTTP/1.1 201 Created
+    Status: 201 Created
+    Connection: close
+    Content-Type: application/json
+    Content-Length: 35
+
+    {
+        token: 'oauth Token'
+    }
+
+
 ## Get list of Guests
 
 ### Request
@@ -44,6 +88,7 @@ The REST API Documentation.
     Connection: close
     Content-Type: application/json
     Content-Length: 2
+    header 'Authorization: Bearer + token' 
 
    {
     "data": [
@@ -92,12 +137,12 @@ The REST API Documentation.
 ### Response
 
     HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
     Status: 201 Created
     Connection: close
     Content-Type: application/json
-    Location: /thing/1
     Content-Length: 36
+    header 'Authorization: Bearer + token' 
+
 
             {
             "id": 6,
@@ -107,7 +152,7 @@ The REST API Documentation.
             "age": 20
         }
 
-## Get a User by Id
+## Get a Guest by Id
 
 ### Request
 
@@ -116,13 +161,13 @@ The REST API Documentation.
 ### Response
 
     HTTP/1.1 200 OK
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
     Status: 200 OK
     Connection: close
     Content-Type: application/json
     Content-Length: 36
+    header 'Authorization: Bearer + token' 
 
-            {
+       {
             "id": 6,
             "name": "qingyang",
             "point": 0,
@@ -130,7 +175,7 @@ The REST API Documentation.
             "age": 20
         }
         
-## Update User Point
+## Update Guest Point
 
 ### Request
 {'point': 10}
@@ -140,12 +185,11 @@ The REST API Documentation.
 ### Response
 
     HTTP/1.1 404 Not Found
-    Date: Thu, 24 Feb 2011 12:36:30 GMT
     Status: 404 Not Found
     Connection: close
     Content-Type: application/json
     Content-Length: 35
-
+    header 'Authorization: Bearer + token' 
         {
             "id": 6,
             "name": "qingyang",
@@ -163,11 +207,17 @@ The REST API Documentation.
 ### Response
 
     HTTP/1.1 201 Created
-    Date: Thu, 24 Feb 2011 12:36:31 GMT
     Status: 201 Created
     Connection: close
     Content-Type: application/json
-    Location: /thing/2
     Content-Length: 35
+    header 'Authorization: Bearer + token' 
 
-    {true}
+
+        {
+            "id": 2,
+            "name": "Jazlyn",
+            "point": 10,
+            "address": "1923 Myrl Fords Apt. 656\nCleoberg, DE 73460-1908",
+            "age": 27
+        }

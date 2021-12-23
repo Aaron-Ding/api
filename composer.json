@@ -12,7 +12,8 @@
         "laravel/passport": "^10.2",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.3"
+        "laravel/ui": "^3.3",
+        "nuwave/lighthouse": "^5.31"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
