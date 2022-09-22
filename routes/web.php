@@ -17,5 +17,9 @@ Route::get('/leaderboard', function () {
     return view('layout.app');
 });
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 
 
